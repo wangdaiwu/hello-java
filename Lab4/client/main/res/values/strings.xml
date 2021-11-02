@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Lab4</string>
+
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="name">name</string>
+    <string name="age">age</string>
+    <string name="telephone">telephone</string>
+
+    <string name="required">*required</string>
+    <string name="length_limit_exceeded">error: length limit exceeded</string>
+    <string name="passwords_do_not_match">error: passwords do not match</string>
+    <string name="telephone_helper_text">*valid length of telephone numbers: 11</string>
+    <string name="invalid_telephone_numbers">error: invalid length of telephone numbers</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="cancel">Cancel</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_out">Sign Out</string>
+
+    <string name="welcome">Welcome</string>
+</resources>
