@@ -58,13 +58,8 @@ public class LabServlet extends BaseServlet {
         Map<String, Object> map = new HashMap<>();
         Person person = labService.queryPersonByUsername(req.getParameter("username"));
 
-        map.put("username", person.getUsername());
-        map.put("name", person.getName());
-        map.put("age", person.getAge().toString());
-        map.put("teleno", person.getTeleno());
-
         try {
-            resp.getWriter().write(gson.toJson(map));
+            resp.getWriter().write(gson.toJson(person));
         } catch (Exception e) {
             e.printStackTrace();
         }
