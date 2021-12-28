@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -37,6 +38,133 @@ public class SignUpActivity extends AppCompatActivity {
     private TextInputLayout confirmPasswordLayout;
     private TextInputLayout nameLayout;
     private TextInputLayout telephoneLayout;
+
+    private boolean checkUsername() {
+        String text = usernameEditText.getText().toString();
+        int length = text.length();
+        String pattern1 = "^[a-zA-Z].*$";
+        String pattern2 = "^[a-zA-Z][\\w]*$";
+        String pattern3 = ".*[A-Z].*";
+        boolean hasError = false;
+        String tips = "";
+        if (length < 5 || length > 10) {
+            hasError = true;
+            tips += getString(R.string.username_error1) + "\n";
+        } else {
+            tips += getString(R.string.username_correct1) + "\n";
+        }
+
+        if (!Pattern.matches(pattern1, text)) {
+            hasError = true;
+            tips += getString(R.string.username_error2) + "\n";
+        } else {
+            tips += getString(R.string.username_correct2) + "\n";
+        }
+
+        if (!Pattern.matches(pattern2, text)) {
+            hasError = true;
+            tips += getString(R.string.username_error3) + "\n";
+        } else {
+            tips += getString(R.string.username_correct3) + "\n";
+        }
+
+        if (!Pattern.matches(pattern3, text)) {
+            hasError = true;
+            tips += getString(R.string.username_error4);
+        } else {
+            tips += getString(R.string.username_correct4);
+        }
+
+        if (hasError) {
+            usernameLayout.setError(tips);
+        } else {
+            usernameLayout.setHelperText(tips);
+        }
+        return hasError;
+    }
+
+    private boolean checkPassword() {
+        String text = passwordEditText.getText().toString();
+        int length = text.length();
+        String pattern = "^[\\w]*$";
+        boolean hasError = false;
+        String tips = "";
+        if (length < 6 || length > 12) {
+            hasError = true;
+            tips += getString(R.string.password_error1) + "\n";
+        } else {
+            tips += getString(R.string.password_correct1) + "\n";
+        }
+        if (!Pattern.matches(pattern, text)) {
+            hasError = true;
+            tips += getString(R.string.password_error2);
+        } else {
+            tips += getString(R.string.password_correct2);
+        }
+
+        if (hasError) {
+            passwordLayout.setError(tips);
+        } else {
+            passwordLayout.setHelperText(tips);
+        }
+        return hasError;
+    }
+
+    private boolean checkConfirmPassword() {
+        boolean hasError = false;
+        String tips = "";
+        if (!confirmPasswordEditText.getText().toString().equals(passwordEditText.getText().toString())) {
+            hasError = true;
+            tips += getString(R.string.passwords_do_not_match);
+        } else {
+            tips += getString(R.string.passwords_match);
+        }
+
+        if (hasError) {
+            confirmPasswordLayout.setError(tips);
+        } else {
+            confirmPasswordLayout.setHelperText(tips);
+        }
+        return hasError;
+    }
+
+    private boolean checkName() {
+        String text = nameEditText.getText().toString();
+        int length = text.length();
+        boolean hasError = false;
+        String tips = "";
+        if (length == 0 || length > 20) {
+            hasError = true;
+            tips += getString(R.string.name_error);
+        } else {
+            tips += getString(R.string.name_correct);
+        }
+
+        if (hasError) {
+            nameLayout.setError(tips);
+        } else {
+            nameLayout.setHelperText(tips);
+        }
+        return hasError;
+    }
+
+    private boolean checkTelephone() {
+        boolean hasError = false;
+        String tips = "";
+        if (telephoneEditText.getText().toString().length() != 11) {
+            hasError = true;
+            tips += getString(R.string.telephone_numbers_error);
+        } else {
+            tips += getString(R.string.telephone_numbers_correct);
+        }
+
+        if (hasError) {
+            telephoneLayout.setError(tips);
+        } else {
+            telephoneLayout.setHelperText(tips);
+        }
+        return hasError;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +185,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (usernameEditText.getText().toString().length() > 10) {
-                    usernameLayout.setError(getString(R.string.length_limit_exceeded));
-                } else {
-                    usernameLayout.setError(null);
-                }
+                checkUsername();
             }
         });
 
@@ -78,11 +202,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (passwordEditText.getText().toString().length() > 8) {
-                    passwordLayout.setError(getString(R.string.length_limit_exceeded));
-                } else {
-                    passwordLayout.setError(null);
-                }
+                checkPassword();
             }
         });
 
@@ -99,11 +219,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!confirmPasswordEditText.getText().toString().equals(passwordEditText.getText().toString())) {
-                    confirmPasswordLayout.setError(getString(R.string.passwords_do_not_match));
-                } else {
-                    confirmPasswordLayout.setError(null);
-                }
+                checkConfirmPassword();
             }
         });
 
@@ -120,11 +236,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (nameEditText.getText().toString().length() > 20) {
-                    nameLayout.setError(getString(R.string.length_limit_exceeded));
-                } else {
-                    nameLayout.setError(null);
-                }
+                checkName();
             }
         });
 
@@ -141,11 +253,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (telephoneEditText.getText().toString().length() != 11) {
-                    telephoneLayout.setError(getString(R.string.invalid_telephone_numbers));
-                } else {
-                    telephoneLayout.setError(null);
-                }
+                checkTelephone();
             }
         });
     }
@@ -166,45 +274,34 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean isEditTextValid() {
-        if (usernameEditText.getText().toString().isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "username is required", Toast.LENGTH_SHORT).show();
-            usernameLayout.setError(getString(R.string.required));
-            return false;
-        } else if (usernameEditText.getText().toString().length() > 10) {
-            Toast.makeText(SignUpActivity.this, "username " + getString(R.string.length_limit_exceeded), Toast.LENGTH_SHORT).show();
-            usernameLayout.setError(getString(R.string.length_limit_exceeded));
-            return false;
-        } else if (passwordEditText.getText().toString().isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "password is required", Toast.LENGTH_SHORT).show();
-            passwordLayout.setError(getString(R.string.required));
-            return false;
-        } else if (passwordEditText.getText().toString().length() > 8) {
-            Toast.makeText(SignUpActivity.this, "password " + getString(R.string.length_limit_exceeded), Toast.LENGTH_SHORT).show();
-            passwordLayout.setError(getString(R.string.length_limit_exceeded));
-            return false;
-        } else if (!confirmPasswordEditText.getText().toString().equals(passwordEditText.getText().toString())) {
-            Toast.makeText(SignUpActivity.this, "confirm password " + getString(R.string.passwords_do_not_match), Toast.LENGTH_SHORT).show();
-            confirmPasswordLayout.setError(getString(R.string.passwords_do_not_match));
-            return false;
-        } else if (nameEditText.getText().toString().isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "name is required", Toast.LENGTH_SHORT).show();
-            nameLayout.setError(getString(R.string.required));
-            return false;
-        } else if (nameEditText.getText().toString().length() > 20) {
-            Toast.makeText(SignUpActivity.this, "name " + getString(R.string.length_limit_exceeded), Toast.LENGTH_SHORT).show();
-            nameLayout.setError(getString(R.string.length_limit_exceeded));
-            return false;
-        } else if (telephoneEditText.getText().toString().length() != 11) {
-            Toast.makeText(SignUpActivity.this, "telephone " + getString(R.string.invalid_telephone_numbers), Toast.LENGTH_SHORT).show();
-            telephoneLayout.setError(getString(R.string.invalid_telephone_numbers));
-            return false;
+        boolean isValid = false;
+        if (checkUsername()) {
+            Toast.makeText(SignUpActivity.this, getString(R.string.invalid_username), Toast.LENGTH_SHORT).show();
+        } else if (checkPassword()) {
+            Toast.makeText(SignUpActivity.this, getString(R.string.invalid_password), Toast.LENGTH_SHORT).show();
+        } else if (checkConfirmPassword()) {
+            Toast.makeText(SignUpActivity.this, getString(R.string.invalid_confirm_password), Toast.LENGTH_SHORT).show();
+        } else if (checkName()) {
+            Toast.makeText(SignUpActivity.this, getString(R.string.invalid_name), Toast.LENGTH_SHORT).show();
+        } else if (checkTelephone()) {
+            Toast.makeText(SignUpActivity.this, getString(R.string.invalid_telephone_numbers), Toast.LENGTH_SHORT).show();
+        } else {
+            isValid = true;
         }
-        return true;
+        return isValid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void cancel(View view) {
         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void createAccount(View view) {
@@ -213,7 +310,7 @@ public class SignUpActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://47.107.93.192:8080/Lab4/labServlet?action=signUp",
+                "http://1.14.248.67:8080/Lab4/labServlet?action=signUp",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -226,6 +323,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     Intent intent = new Intent(SignUpActivity.this, WelcomeActivity.class);
                                     intent.putExtra("username", usernameEditText.getText().toString());
                                     startActivity(intent);
+                                    finish();
                                 } else {
                                     Toast.makeText(SignUpActivity.this, jsonObject.getString("result"), Toast.LENGTH_SHORT).show();
                                 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,9 +42,24 @@ public class WelcomeActivity extends AppCompatActivity {
         telephoneTextView = findViewById(R.id.telephone_show);
     }
 
+    private long lastBackPressTime = -1;
+
+    @Override
+    public void onBackPressed() {
+        long currentBackPressTime = System.currentTimeMillis();
+        if (lastBackPressTime == -1 ||
+                currentBackPressTime - lastBackPressTime > 2000) {
+            Toast.makeText(WelcomeActivity.this, getString(R.string.quit_app), Toast.LENGTH_SHORT).show();
+        } else {
+            finish();
+        }
+        lastBackPressTime = currentBackPressTime;
+    }
+
     public void signOut(View view) {
         Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void welcome() {
@@ -52,7 +68,7 @@ public class WelcomeActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://47.107.93.192:8080/Lab4/labServlet?action=welcome",
+                "http://1.14.248.67:8080/Lab4/labServlet?action=welcome",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

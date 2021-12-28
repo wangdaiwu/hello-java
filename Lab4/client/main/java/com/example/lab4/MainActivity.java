@@ -38,9 +38,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private long lastBackPressTime = -1;
+
+    @Override
+    public void onBackPressed() {
+        long currentBackPressTime = System.currentTimeMillis();
+        if (lastBackPressTime == -1 ||
+                currentBackPressTime - lastBackPressTime > 2000) {
+            Toast.makeText(MainActivity.this, getString(R.string.quit_app), Toast.LENGTH_SHORT).show();
+        } else {
+            finish();
+        }
+        lastBackPressTime = currentBackPressTime;
+    }
+
     public void signUp(View view) {
         Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void signIn(View view) {
@@ -49,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://47.107.93.192:8080/Lab4/labServlet?action=signIn",
+                "http://1.14.248.67:8080/Lab4/labServlet?action=signIn",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -61,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
                                 intent.putExtra("username", usernameEditText.getText().toString());
                                 startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(MainActivity.this, jsonObject.getString("result"), Toast.LENGTH_SHORT).show();
                             }
