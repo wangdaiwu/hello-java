@@ -9,7 +9,7 @@
     <string name="telephone">telephone</string>
 
     <string name="username_helper_text">🔵 5–10 digits \n🔵 begin with a letter \n🔵 contains at least one capital letter \n🔵 contains only numbers, letters and underline</string>
-    <string name="password_helper_text">🔵 6–12 digits \n🔵 contains at least one capital letter</string>
+    <string name="password_helper_text">🔵 6–12 digits \n🔵 contains only numbers, letters and underline</string>
     <string name="confirm_password_helper_text">🔵 reenter your password to confirm it is correct</string>
     <string name="name_helper_text">🔵 not null and less than 20 digits</string>
     <string name="telephone_numbers_helper_text">🔵 11 digits</string>
@@ -23,10 +23,10 @@
     <string name="username_correct3">🟢 contains only numbers, letters and underline</string>
     <string name="username_correct4">🟢 contains at least one capital letter</string>
 
-    <string name="password_error1">🔴 password length must be 6–12 digits</string>
-    <string name="password_error2">🔴 username must contain only numbers, letters and underline</string>
-    <string name="password_correct1">🟢 password length must be 6–12 digits</string>
-    <string name="password_correct2">🟢 username must contain only numbers, letters and underline</string>
+    <string name="password_error1">🔴 6–12 digits</string>
+    <string name="password_error2">🔴 contains only numbers, letters and underline</string>
+    <string name="password_correct1">🟢 6–12 digits</string>
+    <string name="password_correct2">🟢 contains only numbers, letters and underline</string>
 
     <string name="passwords_do_not_match">🔴 passwords do not match</string>
     <string name="passwords_match">🟢 passwords match</string>
@@ -36,10 +36,10 @@
     <string name="telephone_numbers_correct">🟢 11 digits</string>
 
     <string name="invalid_username">⚠ invalid username</string>
-    <string name="invalid_password">invalid password</string>
-    <string name="invalid_confirm_password">passwords do not match</string>
-    <string name="invalid_name">invalid name</string>
-    <string name="invalid_telephone_numbers">invalid telephone numbers</string>
+    <string name="invalid_password">⚠ invalid password</string>
+    <string name="invalid_confirm_password">⚠ passwords do not match</string>
+    <string name="invalid_name">⚠ invalid name</string>
+    <string name="invalid_telephone_numbers">⚠ invalid telephone numbers</string>
 
     <string name="quit_app">press the back button again to quit the APP</string>
 
