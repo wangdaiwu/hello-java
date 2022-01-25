@@ -68,7 +68,7 @@ public class WelcomeActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://1.14.248.67:8080/Lab4/labServlet?action=welcome",
+                "http://1.14.248.67:8080/Lab4/welcome",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -78,7 +78,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             usernameTextView.setText(jsonObject.getString("username"));
                             nameTextView.setText(jsonObject.getString("name"));
                             ageTextView.setText(jsonObject.getString("age"));
-                            telephoneTextView.setText(jsonObject.getString("teleno"));
+                            telephoneTextView.setText(jsonObject.getString("phone"));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

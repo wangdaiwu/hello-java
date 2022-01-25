@@ -15,7 +15,7 @@
     <string name="telephone_numbers_helper_text">🔵 11 digits</string>
 
     <string name="username_error1">🔴 5–10 digits</string>
-    <string name="username_error2">🔴 must begin with a letter</string>
+    <string name="username_error2">🔴 begin with a letter</string>
     <string name="username_error3">🔴 contains only numbers, letters and underline</string>
     <string name="username_error4">🔴 contains at least one capital letter</string>
     <string name="username_correct1">🟢 5–10 digits</string>

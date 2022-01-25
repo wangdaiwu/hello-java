@@ -43,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         String text = usernameEditText.getText().toString();
         int length = text.length();
         String pattern1 = "^[a-zA-Z].*$";
-        String pattern2 = "^[a-zA-Z][\\w]*$";
+        String pattern2 = "^[\\w]*$";
         String pattern3 = ".*[A-Z].*";
         boolean hasError = false;
         String tips = "";
@@ -310,7 +310,7 @@ public class SignUpActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://1.14.248.67:8080/Lab4/labServlet?action=signUp",
+                "http://1.14.248.67:8080/Lab4/signUp",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -344,7 +344,7 @@ public class SignUpActivity extends AppCompatActivity {
                 map.put("password", passwordEditText.getText().toString());
                 map.put("name", nameEditText.getText().toString());
                 map.put("age", ageEditText.getText().toString());
-                map.put("teleno", telephoneEditText.getText().toString());
+                map.put("phone", telephoneEditText.getText().toString());
                 return map;
             }
         };

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://1.14.248.67:8080/Lab4/labServlet?action=signIn",
+                "http://1.14.248.67:8080/Lab4/signIn",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

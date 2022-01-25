@@ -4,33 +4,16 @@
 
 # 1 引言
 
-## 1.1  编写目的
+新版本服务端使用 ssm （Spring + Spring MVC + MyBatis） 框架
 
-熟练使用java语言来编写Android工程，掌握Android应用开发环境的搭建方法以及虚拟机的配制方法，掌握Android工程创建方法，掌握Activity生命周期和Volley以http协议通信的方法。在实验二的基础上提供服务端支持，最后实现一个可以注册和登录的app。
+```
+└─Lab4
+   ├─client
+   ├─server (1.0)
+   └─server-ssm (2.0)
+```
 
-## 1.2 背景
-
-项目名称：编程新技术实务实验四
-
-项目负责人：颜祖焕
-
-程序员：颜祖焕 温礼源 刘声
-
-## 1.3 范围
-
-Android 11
-
-## 1.4 参考资料
-
-[尚硅谷JDBC核心技术视频教程（康师傅带你一站式搞定jdbc）_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1eJ411c7rf?spm_id_from=333.999.0.0)
-
-[尚硅谷最新版JavaWeb全套教程,java web零基础入门完整版_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1Y7411K7zz?spm_id_from=333.999.0.0)
-
-[Android Basics in Kotlin course  | Android Developers (google.cn)](https://developer.android.google.cn/courses/android-basics-kotlin/course?hl=zh-cn)
-
-[Volley 概览  | Android 开发者  | Android Developers (google.cn)](https://developer.android.google.cn/training/volley?hl=zh-cn)
-
-# 2 服务器模块
+# 2 服务器模块（旧）
 
 ## 2.1 Maven
 
@@ -169,7 +152,7 @@ try {
 }
 ```
 
-# 3 APP模块
+# 3 APP 模块
 
 ## Activity
 
