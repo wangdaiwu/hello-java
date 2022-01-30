@@ -68,7 +68,7 @@ public class WelcomeActivity extends AppCompatActivity {
         requestQueue.cancelAll(TAG);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
-                "http://1.14.248.67:8080/Lab4/welcome",
+                "http://xxx:8080/Lab4/welcome",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
