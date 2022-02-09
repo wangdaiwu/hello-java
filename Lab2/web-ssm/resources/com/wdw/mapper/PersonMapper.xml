@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdw.mapper.PersonMapper">
+
+    <insert id="addPerson">
+        insert into person(username, name, age, teleno)
+        values (#{username}, #{name}, #{age}, #{phone})
+    </insert>
+
+    <select id="findPersonByUsername" resultType="Person">
+        select username, name, age, teleno as phone
+        from person
+        where username = #{username}
+    </select>
+
+    <select id="findPersonByName" resultType="Person">
+        select username, name, age, teleno as phone
+        from person
+        where name = #{name}
+    </select>
+
+    <delete id="deletePersonByUsername">
+        delete
+        from person
+        where username = #{username}
+    </delete>
+
+    <select id="getPersonList" resultType="Person">
+        select username, name, age, teleno as phone
+        from person
+        order by username
+    </select>
+
+</mapper>

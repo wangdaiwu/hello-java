@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+
+.main {
+    margin: auto;
+    height: 260px;
+    width: 800px;
+    border: 1px black solid;
+    overflow: auto;
+}
+
+.main table {
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.main table th {
+    width: 100px;
+    text-align: center;
+    border-bottom: 3px #e3e3e3 solid;
+    padding: 10px;
+}
+
+.main table td {
+    width: 100px;
+    text-align: center;
+    border-bottom: 1px #e3e3e3 solid;
+    padding: 10px;
+}
+
+.inputClass {
+    width: 100px;
+}
+
+span {
+    color: red;
+}
