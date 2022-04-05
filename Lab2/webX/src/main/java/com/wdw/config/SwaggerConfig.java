@@ -30,7 +30,7 @@ public class SwaggerConfig {
                 .title("Lab2 API 文档")
                 .description("本文档描述了 Lab2 接口定义")
                 .version("1.0")
-                .contact(new Contact("王呆物的 House", "http://1.14.248.67:8080/md/README.html", "1443110344@qq.com"))
+                .contact(new Contact("xxx", "http://xxx/md/README.html", "xxx@xxx.com"))
                 .build();
     }
 }
