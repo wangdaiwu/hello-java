@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdw.mapper.UserMapper">
+
+    <select id="page" resultType="User">
+        select username, password
+        from user
+        order by username
+            limit #{arg0}, #{arg1}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(username)
+        from user
+    </select>
+
+    <select id="getOneByUsername" resultType="User">
+        select username, password
+        from user
+        where username = #{username}
+    </select>
+
+    <update id="updateByUsername">
+        update user
+        set password = #{password}
+        where username = #{username}
+    </update>
+
+    <insert id="save">
+        insert into user(username, password)
+        values (#{username}, #{password})
+    </insert>
+
+    <delete id="removeByUsername">
+        delete
+        from user
+        where username = #{username}
+    </delete>
+
+</mapper>
