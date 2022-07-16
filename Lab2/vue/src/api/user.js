@@ -20,12 +20,6 @@ export default {
       data: user
     })
   },
-  getUser (username) {
-    return request({
-      url: `/user/${username}`,
-      method: 'get'
-    })
-  },
   updateUser (user) {
     return request({
       url: `/user/`,

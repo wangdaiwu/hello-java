@@ -20,12 +20,6 @@ export default {
       data: person
     })
   },
-  getPerson (name) {
-    return request({
-      url: `/person/${name}`,
-      method: 'get'
-    })
-  },
   updatePerson (person) {
     return request({
       url: `/person/`,
@@ -35,7 +29,7 @@ export default {
   },
   deletePerson (name) {
     return request({
-      url: `/deletePerson/${name}`,
+      url: `/person/${name}`,
       method: 'delete'
     })
   }

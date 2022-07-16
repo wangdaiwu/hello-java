@@ -10,20 +10,6 @@
 
 <script>
 export default {
-  name: 'Header',
-  data () {
-    return {}
-  },
-  methods: {
-    // handleSelect () {
-    //   this.$router.push({path: 'person'})
-    // },
-    // handleClick1 () {
-    //   this.$router.push({path: '/user'})
-    // },
-    // handleClick2 () {
-    //   this.$router.push({path: '/person'})
-    // }
-  }
+  name: 'Header'
 }
 </script>
